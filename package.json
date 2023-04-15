@@ -1,0 +1,20 @@
+{
+  "name": "liquery",
+  "version": "0.9.0",
+  "description": "Powerful search, tagging, filtering and sorting via simple text query language, for SQLite databases",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "homepage": "https://github.com/haxtra/liquery",
+  "repository": "github:haxtra/liquery",
+  "keywords": [
+    "tags",
+    "tagging",
+    "query",
+    "sql",
+    "sqlite"
+  ],
+  "author": "Hax <hax@haxtra.com>",
+  "license": "MIT"
+}
