@@ -10,7 +10,7 @@ class LiQuery {
 	keywords = {}
 	aliases = {}
 	processors = {}
-	sortable = null
+	allowed = null
 
 	select = ["*"]
 	count = [`COUNT(${this.primary}) AS count`]
@@ -129,7 +129,7 @@ class LiQuery {
 			parts = parts.filter( (value, index, self) => self.indexOf(value) === index )
 
 		// verify that field use is allowed
-		const useField = field => this.sortable ? (this.sortable.includes(field) || this.aliases[field] ? true : false) : true
+		const useField = field => this.allowed ? (this.allowed.includes(field) || this.aliases[field] ? true : false) : true
 
 		// identify parts of the query and put them to relevant buckets
 		let match = false

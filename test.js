@@ -34,7 +34,7 @@ q = new LiQuery({
 	processors: {
 		super_long_name: val => val == "yes" ? 1 : 0
 	},
-	sortable: [
+	allowed: [
 		"aliased", "equal", "gt", "lt", "gte", "lte", "noteq", "nil", "range", "multi", "multi_neg",
 		"numbers", "letters", "foo", "bar", "id"
 	],
@@ -52,7 +52,7 @@ Equal(q.primary, "id")
 Equal(q.default, "deftag id:asc")
 Equal(q.keywords.kword, "foo:1 bar:2")
 Equal(q.aliases.aliased, "super_long_name")
-Equal(q.sortable.length, 16)
+Equal(q.allowed.length, 16)
 
 Equal(q.select[0], "id")
 Equal(q.select[1], "name")

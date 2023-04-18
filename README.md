@@ -5,11 +5,6 @@ Powerful search, tagging, filtering and sorting via simple text query language, 
 10kb maximized, no dependencies.
 
 
-## Install
-
-    npm i liquery
-
-
 ## Example
 
     hq hammond rock|metal !jazz type:mp3 year:1970-1980 rating:desc
@@ -60,9 +55,17 @@ For tags/search, table must provide search field with content to be searched.
 Tags and search terms are technically the same thing, the difference is semantic and depends on what you put in your search field, data, metadata, or both.
 
 
+## Install
+
+    npm i liquery
+
+
 ## Usage
 
 ```js
+// import
+const LiQuery = require('liquery')
+
 // create and configure instance
 const liquery = new LiQuery({
     table: "table_name"
@@ -97,15 +100,15 @@ const query = new LiQuery({  // showing defaults
     scope: null,             // SQL expression to narrow scope (ex user_id=1), used for every query
 
     select: ["*"],           // fields to pull on select query
-    count:                   // stats to include in count query, sum, avg, what have you
+    count:                   // stats to include in count query, sum, avg, etc
      ["COUNT(id) AS count"],
     limit: 100,              // limit retrieved records
 
     default: null,           // default query, see section below
     keywords: {},            // shortcuts that expand to sub queries
     aliases: {},             // field name aliases for use with filters and sorting
-    sortable: null,          // list of fields that can be filtered and sorted on
     processors: {},          // functions that transform filter values for SQL generation
+    allowed: null,           // list of fields that can be filtered and sorted on
 
     debug: false             // dump processing errors to console
                              // keep intermediate object attached to result object
@@ -135,7 +138,7 @@ Default query in LiQuery format. If provided, will be applied in part, or full t
 
 ### Keywords
 
-Keywords are like shortcuts, and are expanded into subqueries. LiQuery format.
+Keywords are like presets, they expand into subqueries. LiQuery format.
 
 ```js
 keywords: {
@@ -171,14 +174,14 @@ Functions that transform filter values for SQL generation. Useful if we have for
 
 ```js
 // some lookup object
-const userStatuses = {
+const userStatus = {
     inactive: 0,
     active: 1,
 }
 
 // processor directives
 processors: {
-    user_status: value => userStatuses[value]
+    user_status: value => userStatus[value]
 }
 ```
     // using with alias
@@ -197,9 +200,9 @@ Scope defined in instance config will be included in every query, additional sco
     "user_id=1 AND status=2"
 
 
-### Sortable
+### Allowed
 
-List of database columns that are allowed to be filtered and sorted on. Fields from query that are not listed in `.sortable` or `.aliases` will be dropped from the query. Default value `null` disables enforcement, but will lead to database errors when trying to query non-existent db columns.
+List of database columns that are allowed to be used for filter and sort. Fields from query that are not listed in `.allowed` or `.aliases` will be dropped from the query. Default value `null` disables enforcement, but will lead to database errors when trying to query non-existent db columns.
 
 
 ## Caveats
@@ -211,14 +214,4 @@ List of database columns that are allowed to be filtered and sorted on. Fields f
 - probably more
 
 
-## Shameless plug
-
-If you're a SQLite fan, like me, check out [`super-sqlite3`](https://github.com/haxtra/super-sqlite3) for possibly the best SQLite experience. Or at least, that's the goal.
-
-
-## License
-
-MIT
-
-<!-- ghstats -->
-![](https://spy.haxtra.com/gh-liquery)
+![](https://hello.haxtra.com/gh-liquery)

@@ -1,6 +1,6 @@
 {
   "name": "liquery",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Powerful search, tagging, filtering and sorting via simple text query language, for SQLite databases",
   "main": "index.js",
   "scripts": {
